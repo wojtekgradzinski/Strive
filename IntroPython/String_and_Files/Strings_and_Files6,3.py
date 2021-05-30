@@ -32,6 +32,41 @@ def similar_char(s1, s2):
             los.append(str(c) + " in position " + str(i))
     return los
 
+def helper_to_distill(text):
+    """
+    String -> String
+    Returs only text found within pairs of square bracket
+    >>> distill("example[ string]")
+    (' string', 16)
+    """
+    open_bracket = text.find('[')
+    close_bracket = text.find(']', open_bracket + 1)
+    if close_bracket == -1:
+        return None
+    else:
+        string = text[open_bracket + 1: close_bracket]
+        next_string_pos = close_bracket + 1
+    return string, next_string_pos
+
+# def distill_all(text):
+#     """
+#     String -> String
+#     >>> distill("[a]n example [ string] ")
+#     "a string"
+#     """
+#     los = []
+#     while True:
+#         string, next_string_pos = helper_to_distill(text)
+#         if string:
+#             los.append(string)
+#             # next_string, next_string_pos = distill(text[next_string_pos:])
+#             #
+#             text = text[next_string_pos:]
+#         else:
+#             break
+#     concatenated_strings = " ".join(los)
+#     return concatenated_strings
+
 if __name__ == '__main__':
     import doctest
     print(doctest.testmod(verbose=True))
