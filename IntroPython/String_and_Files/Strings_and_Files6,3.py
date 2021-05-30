@@ -67,6 +67,21 @@ def helper_to_distill(text):
 #     concatenated_strings = " ".join(los)
 #     return concatenated_strings
 
+def count_word_in_text(word, text):
+    """
+    String, String -> Integer
+    Counts the number of times word appears in text
+    >>> count_word_in_text("is", "Pluto is still a planet because I say it is.")
+    2
+    """
+    tokens = text.split()
+    clean_tokens = [token.rstrip('.,?,\n,\r') for token in tokens]
+    times_seen = 0
+    for token in clean_tokens:
+        if token == word:
+            times_seen += 1
+    return times_seen
+
 if __name__ == '__main__':
     import doctest
     print(doctest.testmod(verbose=True))
